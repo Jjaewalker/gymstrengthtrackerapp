@@ -23,3 +23,4 @@ private:
 	sqlite3* db; // Database object
 
 
+}
