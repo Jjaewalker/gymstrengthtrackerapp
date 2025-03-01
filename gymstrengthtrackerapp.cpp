@@ -1,9 +1,8 @@
-// gymstrengthtrackerapp.cpp : This file contains the 'main' function. Program execution begins and ends there.
-//
+// gymstrengthtrackerapp.cpp 
 
 
 
-// GymApp.cpp: Main program for workout tracking
+//Main program for workout tracking
 
 #include <iostream>
 #include <vector>
@@ -12,8 +11,17 @@
 #include <iomanip>
 
 using namespace std;
+//User Class
+class user {
+public:
+    std::string name;
+    int age;
+    float weight;
 
-// Struct to hold workout details
+    User(std:string name, int age, float weight) : name(std::move(name)), age(age), weight(weight) {}
+	};
+
+//Struct to hold workout details
 struct Workout{
     string exercise;
     int sets;
@@ -23,11 +31,25 @@ struct Workout{
 
 };
 
-// Class to handle strength tracking
+//Class to handle strength tracking data
 class StrengthTracker {
 private:
     vector<Workout> workouts;
     sqlite3* db;
+
+//Exercise class to hold exercise details
+class Exercisee {
+public:
+    std::string name;
+    float weight;
+    int reps;
+    int sets;
+    std::string date;
+
+    Exercise(std::string name, float weight, int reps, int sets, std::string date)
+		: name(std::move(name)), weight(weight), reps(reps), sets(sets), date(std::move(date)) {}
+	
+};
 
 public:
     StrengthTracker() {
@@ -42,7 +64,7 @@ public:
     ~StrengthTracker() {
         sqlite3_close(db);
     }
-
+	//create table 
     void createTable() {
         string sql = "CREATE TABLE IF NOT EXISTS Workouts ("
             "ID INTEGER PRIMARY KEY AUTOINCREMENT,"
@@ -54,7 +76,7 @@ public:
             sqlite3_free(errMsg);
         }
     }
-
+	// allows the user to log a workout entry and saves it to both memory, stores all data in (w) i.e workout object.
     void logWorkout() {
         Workout w;
         cout << "Enter exercise: ";
