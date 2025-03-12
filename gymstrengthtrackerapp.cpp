@@ -1,7 +1,4 @@
 // gymstrengthtrackerapp.cpp 
-
-
-
 //Main program for workout tracking
 
 #include <iostream>
@@ -46,6 +43,7 @@ public:
     int sets;
     std::string date;
 
+ //constructor with a member initializer
     Exercise(std::string name, float weight, int reps, int sets, std::string date)
 		: name(std::move(name)), weight(weight), reps(reps), sets(sets), date(std::move(date)) {}
 	
@@ -93,3 +91,5 @@ public:
         saveToDatabase(w);
     }
 };
+
+
