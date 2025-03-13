@@ -1,8 +1,3 @@
-// gymstrengthtrackerapp.cpp : This file contains the 'main' function. Program execution begins and ends there.
-//
-
-
-
 // GymApp.cpp: Main program for workout tracking
 
 #include <iostream>
@@ -10,10 +5,13 @@
 #include <fstream>
 #include <sqlite3.h>
 #include <iomanip>
-
+#include "Person.h"
 using namespace std;
 
+
+
 // Struct to hold workout details
+
 struct Workout {
     string exercise;
     int sets;
@@ -24,6 +22,7 @@ struct Workout {
 };
 
 // Class to handle strength tracking
+
 class StrengthTracker {
 private:
     vector<Workout> workouts;
@@ -68,6 +67,12 @@ public:
         cout << "Enter date (YYYY-MM-DD): ";
         cin >> w.date;
         workouts.push_back(w);
-        saveToDatabase(w);
+        // saveToDatabase(w);
     }
 };
+
+int main()
+{
+    Person Charlie ("Charlie", 69, 123, 117.3, 192.3);
+    Charlie.printDetails();
+}
