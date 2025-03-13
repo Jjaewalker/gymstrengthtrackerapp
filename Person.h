@@ -3,7 +3,7 @@
 #include <iostream>
 //person class
 class Person {
-private:
+public:
    std::string name;
     int id;
     int ageInYears;

@@ -1,5 +1,10 @@
 #pragma once
-class FileHandler
-{
+#include <string>
+//filehandler 
+
+class FileHandler{
+public:
+	FileHandler();
+	void writeToFile(std::string name, int age, float weight, float height);
 };
 

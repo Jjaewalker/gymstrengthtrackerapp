@@ -4,8 +4,12 @@
 
 using namespace std;
 
+FileHandler::FileHandler()
+{
+}
 
-void writeToFile(string name, int age, float weight, float height) {
+void FileHandler::writeToFile(string name, int age, float weight, float height)
+{
 
 	std::ofstream myFile("Database.txt");  //Opening a file for writing 
 

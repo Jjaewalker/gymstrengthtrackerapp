@@ -6,6 +6,7 @@
 #include <sqlite3.h>
 #include <iomanip>
 #include "Person.h"
+#include "FileHandler.h"
 using namespace std;
 
 
@@ -74,5 +75,8 @@ public:
 int main()
 {
     Person Charlie ("Charlie", 69, 123, 117.3, 192.3);
-    Charlie.printDetails();
+    FileHandler Data;
+    Data.writeToFile(Charlie.name, Charlie.ageInYears, Charlie.weightInKG, Charlie.heightInCM);
+    return 0;
 }
+
