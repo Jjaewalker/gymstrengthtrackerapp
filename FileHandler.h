@@ -1,7 +1,13 @@
 #pragma once
 #include <string>
-//filehandler 
+#include <iostream>
+#include <fstream>
+#include <sstream>
+#include <vector>
+#include <string>
+using namespace std;
 
+//filehandler 
 class FileHandler{
 public:
 	FileHandler();

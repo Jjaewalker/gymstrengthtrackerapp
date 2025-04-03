@@ -68,9 +68,26 @@ public:
         cout << "Enter date (YYYY-MM-DD): ";
         cin >> w.date;
         workouts.push_back(w);
-        // saveToDatabase(w);
+        //saveToDatabase(w);
     }
 };
+
+void saveToDatabase(const Workout& w) {
+    sqlite3* db;
+    std::string sql = "INSERT INTO Workouts (Exercise, Sets, Reps, Weight, Date) VALUES ('" +
+        w.exercise + "', " + std::to_string(w.sets) + ", " +
+        std::to_string(w.reps) + ", " + std::to_string(w.weight) + ", '" +
+        w.date + "');";
+
+    char* errMsg;
+    if (sqlite3_exec(db, sql.c_str(), 0, 0, &errMsg) != SQLITE_OK) {
+        std::cerr << "Error inserting workout: " << errMsg << std::endl;
+        sqlite3_free(errMsg);
+    }
+    else {
+        std::cout << "Workout saved successfully!" << std::endl;
+    }
+}
 
 int main()
 {

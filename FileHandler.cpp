@@ -4,8 +4,7 @@
 
 using namespace std;
 
-FileHandler::FileHandler()
-{
+FileHandler::FileHandler(){
 }
 
 void FileHandler::writeToFile(string name, int age, float weight, float height)
@@ -27,3 +26,4 @@ void FileHandler::writeToFile(string name, int age, float weight, float height)
 		std::cout << "Error opening file!." << endl;
 	}
 }
+
