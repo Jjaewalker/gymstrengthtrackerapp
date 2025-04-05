@@ -12,6 +12,5 @@ void Person::printDetails()
 	std::cout << "Age: " << ageInYears << " Years\n";
 	std::cout << "This Person's Weight is: " << weightInKG << " KG\n";
 	std::cout << "This Person's Height is: " << heightInCM << " CM\n";
-
-	
 }
+

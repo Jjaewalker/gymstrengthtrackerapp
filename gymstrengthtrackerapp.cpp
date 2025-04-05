@@ -1,19 +1,25 @@
-// GymApp.cpp: Main program for workout tracking
+// gymstrengthtrackerapp.cpp 
+//Main program for workout tracking
 
 #include <iostream>
 #include <vector>
 #include <fstream>
 #include <sqlite3.h>
 #include <iomanip>
-#include "Person.h"
-#include "FileHandler.h"
+
 using namespace std;
+//User Class
+class user {
+public:
+    std::string name;
+    int age;
+    float weight;
 
+    User(std:string name, int age, float weight) : name(std::move(name)), age(age), weight(weight) {}
+	};
 
-
-// Struct to hold workout details
-
-struct Workout {
+//Struct to hold workout details
+struct Workout{
     string exercise;
     int sets;
     int reps;
@@ -22,11 +28,26 @@ struct Workout {
 
 };
 
-// Class to handle strength tracking
+//Class to handle strength tracking data
 class StrengthTracker {
 private:
     vector<Workout> workouts;
     sqlite3* db;
+
+//Exercise class to hold exercise details
+class Exercisee {
+public:
+    std::string name;
+    float weight;
+    int reps;
+    int sets;
+    std::string date;
+
+ //constructor with a member initializer
+    Exercise(std::string name, float weight, int reps, int sets, std::string date)
+		: name(std::move(name)), weight(weight), reps(reps), sets(sets), date(std::move(date)) {}
+	
+};
 
 public:
     StrengthTracker() {
@@ -41,7 +62,7 @@ public:
     ~StrengthTracker() {
         sqlite3_close(db);
     }
-
+	//create table 
     void createTable() {
         string sql = "CREATE TABLE IF NOT EXISTS Workouts ("
             "ID INTEGER PRIMARY KEY AUTOINCREMENT,"
@@ -53,7 +74,7 @@ public:
             sqlite3_free(errMsg);
         }
     }
-
+	// allows the user to log a workout entry and saves it to both memory, stores all data in (w) i.e workout object.
     void logWorkout() {
         Workout w;
         cout << "Enter exercise: ";
@@ -67,32 +88,8 @@ public:
         cout << "Enter date (YYYY-MM-DD): ";
         cin >> w.date;
         workouts.push_back(w);
-        //saveToDatabase(w);
+        saveToDatabase(w);
     }
 };
 
-void saveToDatabase(const Workout& w) {
-    sqlite3* db; nullptr;
-    std::string sql = "INSERT INTO Workouts (Exercise, Sets, Reps, Weight, Date) VALUES ('" +
-        w.exercise + "', " + std::to_string(w.sets) + ", " +
-        std::to_string(w.reps) + ", " + std::to_string(w.weight) + ", '" +
-        w.date + "');";
-
-    char* errMsg;
-    if (sqlite3_exec(db, sql.c_str(), 0, 0, &errMsg) != SQLITE_OK) {
-        std::cerr << "Error inserting workout: " << errMsg << std::endl;
-        sqlite3_free(errMsg);
-    }
-    else {
-        std::cout << "Workout saved successfully!" << std::endl;
-    }
-}
-
-int main()
-{
-    Person Charlie ("Charlie", 69, 123, 117.3, 192.3);
-    FileHandler Data;
-    Data.writeToFile(Charlie.name, Charlie.ageInYears, Charlie.weightInKG, Charlie.heightInCM);
-    return 0;
-}
 
